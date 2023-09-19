@@ -27,7 +27,7 @@ spec:
           - mountPath: /var/lib/grafana:Z
             name: grafana
       - name: influxdb
-        image: influxdb:1.7.4
+        image: docker.io/influxdb/influxdb:latest
         ports:
           - containerPort: 8086
         volumeMounts:
