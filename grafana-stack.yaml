@@ -31,15 +31,15 @@ spec:
         ports:
           - containerPort: 8086
         volumeMounts:
-          - mountPath: /var/lib/influxdb
-            name: influxdb-data
+          # - mountPath: /var/lib/influxdb
+            # name: influxdb-data
           - mountPath: /etc/influxdb/influxdb.conf
             name: influxdb-config
             subPath: influxdb.conf
             readOnly: true
-        envFrom:
-          - secretRef:
-              name: influxdb-secrets
+        # envFrom:
+          # - secretRef:
+              # name: influxdb-secrets
       # - name: mimir
       #   image: docker.io/grafana/mimir:latest
       #   args:
