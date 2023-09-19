@@ -21,18 +21,21 @@ Now we want to spin this up using podman.
 ```
 $ podman play kube grafana-stack.yaml
 
-podman pod ps -q | xargs podman pod rm -f
-podman play kube deployment.yaml
+podman pod ps -q | xargs podman pod rm -f && podman play kube grafana-stack.yaml
 
 ```
 
 We can verify the stack is up and running by running the following.
 
-```$ podman ps```
+```
+podman ps
+```
 
 Next up we can expose Grafana, Mimir, Loki, and Tempo via firewall-cmd.
 
-```$ sudo firewall-cmd --permanent --add-port={3000/tcp,3100/tcp,4317/tcp,4318/tcp,9009/tcp,9095/tcp,9096/tcp,9097/tcp,9411/tcp,14268/tcp}```
+```
+sudo firewall-cmd --permanent --add-port={3000/tcp,3100/tcp,4317/tcp,4318/tcp,9009/tcp,9095/tcp,9096/tcp,9097/tcp,9411/tcp,14268/tcp}
+```
 
 ```$ sudo firewall-cmd --reload```
 

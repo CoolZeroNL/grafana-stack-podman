@@ -26,6 +26,20 @@ spec:
             name: grafana-config
           - mountPath: /var/lib/grafana:Z
             name: grafana
+        - name: influxdb
+          image: influxdb:1.7.4
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - mountPath: /var/lib/influxdb
+              name: influxdb-data
+            - mountPath: /etc/influxdb/influxdb.conf
+              name: influxdb-config
+              subPath: influxdb.conf
+              readOnly: true
+          envFrom:
+            - secretRef:
+                name: influxdb-secrets
       # - name: mimir
       #   image: docker.io/grafana/mimir:latest
       #   args:
@@ -97,6 +111,19 @@ spec:
           path: ./grafana/grafana.ini
           type: File
         name: grafana-config
+      - hostPath:
+          path: ./influxdb/influxdb.conf
+          type: File
+        name: influxdb-config
+
+
+        # - name: influxdb-data
+        #   persistentVolumeClaim:
+        #     claimName: influxdb-data
+        # - name: influxdb-config
+        #   configMap:
+        #     name: influxdb-config
+
       # - hostPath:
       #     path: ./mimir/data
       #     type: Directory
