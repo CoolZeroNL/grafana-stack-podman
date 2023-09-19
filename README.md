@@ -18,7 +18,13 @@ Change to the cloned repo directory.
 
 Now we want to spin this up using podman.
 
-```$ podman play kube grafana-stack.yaml```
+```
+$ podman play kube grafana-stack.yaml
+
+podman pod ps -q | xargs podman pod rm -f
+podman play kube deployment.yaml
+
+```
 
 We can verify the stack is up and running by running the following.
 
