@@ -100,7 +100,7 @@ spec:
       #       name: tempo-config
       volumes:
       - hostPath:
-          path: ./grafana/data
+          path: /home/joop/grafana-stack-podman/grafana/data
           type: Directory
         name: grafana
       - hostPath:
