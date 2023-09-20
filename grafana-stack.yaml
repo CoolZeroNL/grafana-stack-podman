@@ -26,16 +26,6 @@ spec:
             name: grafana-config
           - mountPath: /var/lib/grafana:Z
             name: grafana
-          # 
-      # - name: influxdb
-      #   image: docker.io/influxdb/influxdb:latest
-      #   ports:
-      #     - containerPort: 8089
-      #       hostPort: 8089
-      #       protocol: UDP
-      #   volumeMounts:
-      #     - mountPath: /etc/influxdb/influxdb.conf:Z
-      #       name: influxdb-config          
       # - name: mimir
       #   image: docker.io/grafana/mimir:latest
       #   args:
@@ -52,24 +42,24 @@ spec:
       #       name: mimir
       #     - mountPath: /mnt/config/mimir-local-config.yaml:Z
       #       name: mimir-config
-      - name: loki
-        image: docker.io/grafana/loki:latest
-        args:
-        - --config.file=/mnt/config/loki-local-config.yaml
-        securityContext:
-          runAsUser: 1000
-        ports:
-          - containerPort: 3100
-            hostPort: 3100
-            protocol: TCP
-          - containerPort: 9096
-            hostPort: 9096
-            protocol: TCP
-        volumeMounts:
-          - mountPath: /tmp/loki:Z
-            name: loki
-          - mountPath: /mnt/config/loki-local-config.yaml:Z
-            name: loki-config
+      # - name: loki
+      #   image: docker.io/grafana/loki:latest
+      #   args:
+      #   - --config.file=/mnt/config/loki-local-config.yaml
+      #   securityContext:
+      #     runAsUser: 1000
+      #   ports:
+      #     - containerPort: 3100
+      #       hostPort: 3100
+      #       protocol: TCP
+      #     - containerPort: 9096
+      #       hostPort: 9096
+      #       protocol: TCP
+      #   volumeMounts:
+      #     - mountPath: /tmp/loki:Z
+      #       name: loki
+      #     - mountPath: /mnt/config/loki-local-config.yaml:Z
+      #       name: loki-config
       # - name: tempo
       #   image: docker.io/grafana/tempo:latest
       #   args:
@@ -100,17 +90,13 @@ spec:
       #       name: tempo-config
       volumes:
       - hostPath:
-          path: /home/joop/grafana-stack-podman/grafana/data
+          path: ./grafana/data
           type: Directory
         name: grafana
       - hostPath:
-          path: /home/joop/grafana-stack-podman/grafana/grafana.ini
+          path: ./grafana/grafana.ini
           type: File
         name: grafana-config
-      - hostPath:
-          path: ./influxdb/influxdb.conf
-          type: File
-        name: influxdb-config        
       # - hostPath:
       #     path: ./mimir/data
       #     type: Directory
@@ -119,14 +105,14 @@ spec:
       #     path: ./mimir/mimir-local-config.yaml
       #     type: File
       #   name: mimir-config
-      - hostPath:
-          path: ./loki/data
-          type: Directory
-        name: loki
-      - hostPath:
-          path: ./loki/loki-local-config.yaml
-          type: File
-        name: loki-config
+      # - hostPath:
+      #     path: ./loki/data
+      #     type: Directory
+      #   name: loki
+      # - hostPath:
+      #     path: ./loki/loki-local-config.yaml
+      #     type: File
+      #   name: loki-config
       # - hostPath:
       #     path: ./tempo/data
       #     type: Directory
