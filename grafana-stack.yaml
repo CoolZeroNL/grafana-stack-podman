@@ -22,10 +22,10 @@ spec:
             hostPort: 3000
             protocol: TCP
         volumeMounts:
-          - mountPath: /etc/grafana/grafana.ini:Z
-            name: grafana-config
-          - mountPath: /var/lib/grafana:Z
-            name: grafana
+          - name: grafana-config
+            mountPath: /etc/grafana/grafana.ini:Z
+          - name: grafana
+            mountPath: /var/lib/grafana:Z
           # 
       # - name: influxdb
       #   image: docker.io/influxdb/influxdb:latest
