@@ -60,34 +60,34 @@ spec:
             name: loki
           - mountPath: /mnt/config/loki-local-config.yaml:Z
             name: loki-config
-      - name: tempo
-        image: docker.io/grafana/tempo:latest
-        args:
-        - --config.file=/mnt/config/tempo-local-config.yaml
-        ports:
-          - containerPort: 3200
-            hostPort: 3200
-            protocol: TCP
-          - containerPort: 4317
-            hostPort: 4317
-            protocol: TCP
-          - containerPort: 4318
-            hostPort: 4318
-            protocol: TCP
-          - containerPort: 9097
-            hostPort: 9097
-            protocol: TCP
-          - containerPort: 9411
-            hostPort: 9411
-            protocol: TCP
-          - containerPort: 14268
-            hostPort: 14268
-            protocol: TCP
-        volumeMounts:
-          - mountPath: /tmp/tempo:Z
-            name: tempo
-          - mountPath: /mnt/config/tempo-local-config.yaml:Z
-            name: tempo-config
+      # - name: tempo
+      #   image: docker.io/grafana/tempo:latest
+      #   args:
+      #   - --config.file=/mnt/config/tempo-local-config.yaml
+      #   ports:
+      #     - containerPort: 3200
+      #       hostPort: 3200
+      #       protocol: TCP
+      #     - containerPort: 4317
+      #       hostPort: 4317
+      #       protocol: TCP
+      #     - containerPort: 4318
+      #       hostPort: 4318
+      #       protocol: TCP
+      #     - containerPort: 9097
+      #       hostPort: 9097
+      #       protocol: TCP
+      #     - containerPort: 9411
+      #       hostPort: 9411
+      #       protocol: TCP
+      #     - containerPort: 14268
+      #       hostPort: 14268
+      #       protocol: TCP
+      #   volumeMounts:
+      #     - mountPath: /tmp/tempo:Z
+      #       name: tempo
+      #     - mountPath: /mnt/config/tempo-local-config.yaml:Z
+      #       name: tempo-config
       volumes:
       - hostPath:
           path: ./grafana/data
@@ -113,11 +113,11 @@ spec:
           path: ./loki/loki-local-config.yaml
           type: File
         name: loki-config
-      - hostPath:
-          path: ./tempo/data
-          type: Directory
-        name: tempo
-      - hostPath:
-          path: ./tempo/tempo-local-config.yaml
-          type: File
-        name: tempo-config
+      # - hostPath:
+      #     path: ./tempo/data
+      #     type: Directory
+      #   name: tempo
+      # - hostPath:
+      #     path: ./tempo/tempo-local-config.yaml
+      #     type: File
+      #   name: tempo-config
