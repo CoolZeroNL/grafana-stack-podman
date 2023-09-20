@@ -26,22 +26,22 @@ spec:
             name: grafana-config
           - mountPath: /var/lib/grafana:Z
             name: grafana
-      - name: mimir
-        image: docker.io/grafana/mimir:latest
-        args:
-        - --config.file=/mnt/config/mimir-local-config.yaml
-        ports:
-          - containerPort: 9009
-            hostPort: 9009
-            protocol: TCP
-          - containerPort: 9095
-            hostPort: 9095
-            protocol: TCP
-        volumeMounts:
-          - mountPath: /tmp/mimir:Z
-            name: mimir
-          - mountPath: /mnt/config/mimir-local-config.yaml:Z
-            name: mimir-config
+      # - name: mimir
+      #   image: docker.io/grafana/mimir:latest
+      #   args:
+      #   - --config.file=/mnt/config/mimir-local-config.yaml
+      #   ports:
+      #     - containerPort: 9009
+      #       hostPort: 9009
+      #       protocol: TCP
+      #     - containerPort: 9095
+      #       hostPort: 9095
+      #       protocol: TCP
+      #   volumeMounts:
+      #     - mountPath: /tmp/mimir:Z
+      #       name: mimir
+      #     - mountPath: /mnt/config/mimir-local-config.yaml:Z
+      #       name: mimir-config
       - name: loki
         image: docker.io/grafana/loki:latest
         args:
@@ -97,14 +97,14 @@ spec:
           path: ./grafana/grafana.ini
           type: File
         name: grafana-config
-      - hostPath:
-          path: ./mimir/data
-          type: Directory
-        name: mimir
-      - hostPath:
-          path: ./mimir/mimir-local-config.yaml
-          type: File
-        name: mimir-config
+      # - hostPath:
+      #     path: ./mimir/data
+      #     type: Directory
+      #   name: mimir
+      # - hostPath:
+      #     path: ./mimir/mimir-local-config.yaml
+      #     type: File
+      #   name: mimir-config
       - hostPath:
           path: ./loki/data
           type: Directory
