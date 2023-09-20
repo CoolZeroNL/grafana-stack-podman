@@ -104,7 +104,7 @@ spec:
           type: Directory
         name: grafana
       - hostPath:
-          path: ./grafana/grafana.ini
+          path: /home/joop/grafana-stack-podman/grafana/grafana/grafana.ini
           type: File
         name: grafana-config
       - hostPath:
