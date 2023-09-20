@@ -26,19 +26,19 @@ spec:
             name: grafana-config
           - mountPath: /var/lib/grafana:Z
             name: grafana
-      - name: influxdb
-        image: docker.io/influxdb/influxdb:latest
-        ports:
-          - containerPort: 8086
-            hostPort: 8086
-            protocol: UDP          
-        volumeMounts:
-          # - mountPath: /var/lib/influxdb
-            # name: influxdb-data
-          - mountPath: /etc/influxdb/influxdb.conf
-            name: influxdb-config
-            subPath: influxdb.conf
-            readOnly: true
+      # - name: influxdb
+      #   image: docker.io/influxdb/influxdb:latest
+      #   ports:
+      #     - containerPort: 8086
+      #       hostPort: 8086
+      #       protocol: UDP          
+      #   volumeMounts:
+      #     # - mountPath: /var/lib/influxdb
+      #       # name: influxdb-data
+      #     - mountPath: /etc/influxdb/influxdb.conf
+      #       name: influxdb-config
+      #       subPath: influxdb.conf
+      #       readOnly: true
         # envFrom:
           # - secretRef:
               # name: influxdb-secrets
@@ -113,10 +113,10 @@ spec:
           path: ./grafana/grafana.ini
           type: File
         name: grafana-config
-      - hostPath:
-          path: ./influxdb/influxdb.conf
-          type: File
-        name: influxdb-config
+      # - hostPath:
+      #     path: ./influxdb/influxdb.conf
+      #     type: File
+      #   name: influxdb-config
         # - name: influxdb-data
         #   persistentVolumeClaim:
         #     claimName: influxdb-data
